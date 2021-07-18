@@ -3,6 +3,7 @@ import { Router, Route, Switch } from 'dva/router';
 import IndexPage from './routes/IndexPage';
 import Products from './routes/Products';
 import InputColor from './routes/InputColor';
+import FormPage from './routes/Form';
 
 function RouterConfig({ history }) {
   return (
@@ -11,6 +12,7 @@ function RouterConfig({ history }) {
         <Route path="/" exact component={IndexPage} />
         <Route path="/products" exact component={Products} />
         <Route path="/InputColor" exact component={InputColor} />
+        <Route path="/form" exact component={FormPage} />
       </Switch>
     </Router>
   );
