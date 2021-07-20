@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'dva';
-import styles from './IndexPage.css';
-import { 
-  Button, 
-  Radio
-} from 'antd';
+import React, { useState, useEffect } from "react";
+import { connect } from "dva";
+import styles from "./IndexPage.css";
+import { Button, Radio } from "antd";
 
 function IndexPage(props) {
   const history = props.history;
@@ -21,29 +18,36 @@ function IndexPage(props) {
     // window.scrollTo({
     //   top: 100,
     // });
-    console.log(itemHigh?.scrollTop, 'itemHigh');
+    console.log(itemHigh?.scrollTop, "itemHigh");
   }
   console.log(props);
 
-  const [ size, setSize ] = useState('large');
+  const [size, setSize] = useState("large");
   const handleSizeChange = (e) => {
     setSize(e.target.value);
-  }
-  
+  };
+
   const handleScroll = (event) => {
-  // 注意事项 https://www.cnblogs.com/tu-0718/p/12988129.html
-  // 1. PC上为了兼容性，获取滚动距离的2种方式都要写，document.documentElement.scrollTop || document.body.scrollTop;
-  // 2. 移动端获取滚动的距离要用document.body.scrollTop，document.documentElement.scrollTop不起作用
-    console.log('挂载滚动监听');
+    // 注意事项 https://www.cnblogs.com/tu-0718/p/12988129.html
+    // 1. PC上为了兼容性，获取滚动距离的2种方式都要写，document.documentElement.scrollTop || document.body.scrollTop;
+    // 2. 移动端获取滚动的距离要用document.body.scrollTop，document.documentElement.scrollTop不起作用
+    console.log("挂载滚动监听");
     // 滚动的高度
-    const scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false) || window.pageYOffset || (event.srcElement ? event.srcElement.body.scrollTop : 0);
+    const scrollTop =
+      (event.srcElement ? event.srcElement.documentElement.scrollTop : false) ||
+      window.pageYOffset ||
+      (event.srcElement ? event.srcElement.body.scrollTop : 0);
     // 视窗高度
-    const clientHeight = (event.srcElement && event.srcElement.documentElement.clientHeight) || document.body.clientHeight;
+    const clientHeight =
+      (event.srcElement && event.srcElement.documentElement.clientHeight) ||
+      document.body.clientHeight;
     // 页面高度
-    const scrollHeight = (event.srcElement && event.srcElement.documentElement.scrollHeight) || document.body.scrollHeight;
+    const scrollHeight =
+      (event.srcElement && event.srcElement.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
     // 距离页面底部的高度
     const height = scrollHeight - scrollTop - clientHeight;
-    console.log(scrollTop, clientHeight, scrollHeight, height, 'xxxx');
+    console.log(scrollTop, clientHeight, scrollHeight, height, "xxxx");
     // 判断距离页面底部的高度
     // if (height <= (this.props.num || 0)) {
     //   // 判断执行回调条件
@@ -63,26 +67,33 @@ function IndexPage(props) {
     //       codeType: true
     //   });
     // }
-  }
+  };
   const removeScroll = (e) => {
-    console.log('移除滚动监听');
-  }
+    console.log("移除滚动监听");
+  };
   const goInputColor = (event) => {
     // 滚动的高度
-    const scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false) || window.pageYOffset || (event.srcElement ? event.srcElement.body.scrollTop : 0);
+    const scrollTop =
+      (event.srcElement ? event.srcElement.documentElement.scrollTop : false) ||
+      window.pageYOffset ||
+      (event.srcElement ? event.srcElement.body.scrollTop : 0);
     // 视窗高度
-    const clientHeight = (event.srcElement && event.srcElement.documentElement.clientHeight) || document.body.clientHeight;
+    const clientHeight =
+      (event.srcElement && event.srcElement.documentElement.clientHeight) ||
+      document.body.clientHeight;
     // 页面高度
-    const scrollHeight = (event.srcElement && event.srcElement.documentElement.scrollHeight) || document.body.scrollHeight;
+    const scrollHeight =
+      (event.srcElement && event.srcElement.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
     // 距离页面底部的高度
     const height = scrollHeight - scrollTop - clientHeight;
     history.push({
-      pathname: '/InputColor',
+      pathname: "/InputColor",
       itemHigh: {
         scrollTop: scrollTop,
       },
     });
-  }
+  };
   useEffect(() => {
     if (itemHigh) {
       window.scroll(0, itemHigh?.scrollTop);
@@ -98,8 +109,14 @@ function IndexPage(props) {
       <h1 className={styles.title}>Yay! Welcome to dva!</h1>
       <div className={styles.welcome} />
       <ul className={styles.list}>
-        <li>To get started, edit <code>src/index.js</code> and save to reload.</li>
-        <li><a href="https://github.com/dvajs/dva-docs/blob/master/v1/en-us/getting-started.md">Getting Started</a></li>
+        <li>
+          To get started, edit <code>src/index.js</code> and save to reload.
+        </li>
+        <li>
+          <a href="https://github.com/dvajs/dva-docs/blob/master/v1/en-us/getting-started.md">
+            Getting Started
+          </a>
+        </li>
         <Radio.Group value={size} onChange={handleSizeChange}>
           <Radio.Button value="large">Large</Radio.Button>
           <Radio.Button value="default">Default</Radio.Button>
@@ -119,7 +136,8 @@ function IndexPage(props) {
           Link
         </Button>
       </ul>
-<Button onClick={goInputColor}>go InputColor</Button>
+
+      <Button onClick={goInputColor}>go InputColor</Button>
       <p>Hello world!!! 1</p>
       <p>Hello world!!! 2</p>
       <p>Hello world!!! 3</p>
@@ -160,7 +178,6 @@ function IndexPage(props) {
   );
 }
 
-IndexPage.propTypes = {
-};
+IndexPage.propTypes = {};
 
 export default connect()(IndexPage);
