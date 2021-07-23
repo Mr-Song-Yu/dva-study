@@ -1,8 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Form, Input, Button } from 'antd';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { connect } from 'dva';
+import React from "react";
+import { Form, Input, Button } from "antd";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { connect } from "dva";
 
 const formItemLayout = {
   labelCol: {
@@ -22,19 +21,23 @@ const formItemLayoutWithOutLabel = {
 };
 
 const DynamicFieldSet = () => {
-  const onFinish = values => {
-    console.log('Received values of form:', values);
+  const onFinish = (values) => {
+    console.log("Received values of form:", values);
   };
 
   return (
-    <Form name="dynamic_form_item" {...formItemLayoutWithOutLabel} onFinish={onFinish}>
+    <Form
+      name="dynamic_form_item"
+      {...formItemLayoutWithOutLabel}
+      onFinish={onFinish}
+    >
       <Form.List
         name="names"
         rules={[
           {
             validator: async (_, names) => {
               if (!names || names.length < 2) {
-                return Promise.reject(new Error('At least 2 passengers'));
+                return Promise.reject(new Error("At least 2 passengers"));
               }
             },
           },
@@ -45,23 +48,27 @@ const DynamicFieldSet = () => {
             {fields.map((field, index) => (
               <Form.Item
                 {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-                label={index === 0 ? 'Passengers' : ''}
+                label={index === 0 ? "Passengers" : ""}
                 required={false}
                 key={field.key}
               >
                 <Form.Item
                   {...field}
-                  validateTrigger={['onChange', 'onBlur']}
+                  validateTrigger={["onChange", "onBlur"]}
                   rules={[
                     {
                       required: true,
                       whitespace: true,
-                      message: "Please input passenger's name or delete this field.",
+                      message:
+                        "Please input passenger's name or delete this field.",
                     },
                   ]}
                   noStyle
                 >
-                  <Input placeholder="passenger name" style={{ width: '60%' }} />
+                  <Input
+                    placeholder="passenger name"
+                    style={{ width: "60%" }}
+                  />
                 </Form.Item>
                 {fields.length > 1 ? (
                   <MinusCircleOutlined
@@ -75,7 +82,7 @@ const DynamicFieldSet = () => {
               <Button
                 type="dashed"
                 onClick={() => add()}
-                style={{ width: '60%' }}
+                style={{ width: "60%" }}
                 icon={<PlusOutlined />}
               >
                 Add field
@@ -83,9 +90,9 @@ const DynamicFieldSet = () => {
               <Button
                 type="dashed"
                 onClick={() => {
-                  add('The head item', 0);
+                  add("The head item", 0);
                 }}
-                style={{ width: '60%', marginTop: '20px' }}
+                style={{ width: "60%", marginTop: "20px" }}
                 icon={<PlusOutlined />}
               >
                 Add field at head
