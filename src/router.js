@@ -5,7 +5,7 @@ import Products from "./routes/Products";
 import InputColor from "./routes/InputColor";
 import FormPage from "./routes/Form";
 import LocalizedModal from "./components/Model";
-
+import AdvancedSearchForm from "./components/SearchForm";
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -15,6 +15,7 @@ function RouterConfig({ history }) {
         <Route path="/InputColor" exact component={InputColor} />
         <Route path="/form" exact component={FormPage} />
         <Route path="/model" component={LocalizedModal} />
+        <Route path="/SearchForm" component={AdvancedSearchForm} />
       </Switch>
     </Router>
   );
