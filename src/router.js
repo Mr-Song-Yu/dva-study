@@ -6,6 +6,7 @@ import InputColor from "./routes/InputColor";
 import FormPage from "./routes/Form";
 import LocalizedModal from "./components/Model";
 import AdvancedSearchForm from "./components/SearchForm";
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
